@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+
+<style>
+/* Same style as register */
+body{
+    font-family: Arial;
+    background: linear-gradient(to right,#4facfe,#00f2fe);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.box{
+    background:white;
+    padding:30px;
+    width:350px;
+    border-radius:10px;
+    box-shadow:0 0 15px gray;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin-top:8px;
+    border:2px solid #ccc;
+    border-radius:5px;
+}
+
+.error{
+    border-color:red;
+}
+
+.success{
+    border-color:green;
+}
+
+.msg{
+    font-size:13px;
+    color:red;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#4facfe;
+    color:white;
+    border:none;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Login</h2>
+
+<form action="login.php" method="POST" id="logForm">
+
+<input type="email" name="email" id="email" placeholder="Email">
+<div class="msg" id="emailMsg"></div>
+
+<input type="password" name="password" id="pass" placeholder="Password">
+<div class="msg" id="passMsg"></div>
+
+<button type="submit">Login</button>
+
+<p>New user? <a href="register.html">Register</a></p>
+
+</form>
+
+</div>
+
+<script>
+
+// Email
+email.oninput = function(){
+
+    let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    if(!email.value.match(pattern)){
+        email.classList.add("error");
+        emailMsg.innerHTML="Invalid email";
+    }
+    else{
+        email.classList.remove("error");
+        email.classList.add("success");
+        emailMsg.innerHTML="";
+    }
+}
+
+// Password
+pass.oninput = function(){
+
+    if(pass.value.length < 8){
+        pass.classList.add("error");
+        passMsg.innerHTML="Min 8 characters";
+    }
+    else{
+        pass.classList.remove("error");
+        pass.classList.add("success");
+        passMsg.innerHTML="";
+    }
+}
+
+// Submit check
+logForm.onsubmit = function(){
+
+    if(pass.value.length < 8){
+        alert("Fix errors first!");
+        return false;
+    }
+
+    return true;
+}
+</script>
+
+</body>
+</html>
